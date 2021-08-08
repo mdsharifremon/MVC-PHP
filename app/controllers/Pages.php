@@ -12,7 +12,14 @@ class Pages extends Controller{
     }
 
     public function index(){ 
-        $this->view('pages/index');
+        
+        $users = $this->userModel->getUser();
+
+        $data = [
+            'title' => 'Home Page',
+            'users' => $users,
+        ];
+        $this->view('pages/index', $data);
     }
 
     public function about(){

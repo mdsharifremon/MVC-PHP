@@ -27,7 +27,7 @@
 
           try{
             $this->handler = new PDO($this->conn,$this->db_user, $this->db_pass, $options);
-            echo "connection successfully";
+    
           }catch(PDOException $e){
                 $this->error = $e->getMessage();
                 echo $this->error;
@@ -60,7 +60,28 @@
         $this->statement->bindValue($parameter, $value, $type);
     }
 
+    // Execute the statement
+    public function execute(){
+        $this->statement->execute();
+    }
 
+    // Return an array of results
+    public function resultSet(){
+        $this->execute();
+        return $this->statement->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    // Return a specific row as obj
+    public function singleRow(){
+        $this->execute();
+        return $this->statement->fetch(PDO::FETCH_OBJ);
+    }
+
+   // Return row count 
+
+   public function rowCount(){
+       $this->statement->rowCount();
+   }
 
 
  }

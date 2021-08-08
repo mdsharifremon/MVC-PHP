@@ -1,17 +1,22 @@
 <?php
 
 /**
- * 
+ * Model Class
  * 
  */
-
 class User{
 
     private $db;
 
     public function __construct()
     {
-        $db = new Database();
+        $this->db = new Database();
+     }
+
+     public function getUser(){
+         $this->db->query("SELECT * FROM user"); 
+         $result = $this->db->resultSet();
+         return $result;
      }
 
 }
